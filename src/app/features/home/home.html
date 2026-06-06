@@ -1,56 +1,143 @@
-<section class="md:h-screen gradient-cyan-blue">
-  <div class="py-8 md:py-0 main-container md:flex flex-col justify-center items-center h-full gap-8 space-y-4 md:space-y-0">
-    <span class="text-text-900 font-semibold bg-monochromatic-base border-monochromatic-dark border-2 px-4 py-0.5 rounded-full">
-      Version 2.0 Now Available
-    </span>
-    <p class="text-xl md:text-center mt-4 md:mt-0">They say you always build it better the second time around. Welcome to Attendify 2.0.</p>
-    <h1 class="text-xl w-4/5 md:text-center md:leading-10">Experience the Future of Attendance tracking with face recognition, real-time analytics, and seamless integrations.</h1>
+<!-- HERO -->
+<section class="hero-wash">
+  <div
+    class="main-container grid items-center gap-12 py-16 md:py-24 lg:grid-cols-2 lg:gap-16"
+  >
+    <div class="reveal max-w-xl">
+      <span
+        class="inline-flex items-center gap-2 rounded-full bg-monochromatic-light px-3 py-1 text-sm font-semibold text-primary-action"
+      >
+        <span class="h-1.5 w-1.5 rounded-full bg-monochromatic-dark" aria-hidden="true"></span>
+        Version 2.0 Now Available
+      </span>
 
-    <button mat-flat-button color="primary">
-      Apply Now
-    </button>
-    
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="bg-[#B9C9FE] h-32 w-full md:w-auto aspect-video rounded-xl flex flex-col items-center justify-center">
-        <p class="text-xl">1,800+</p>
-        <p class="text-xl">Unique Attendees</p>
+      <h1 class="hero-title mt-5 text-balance font-bold text-text-900">
+        Experience the future of attendance tracking
+      </h1>
+
+      <p class="mt-5 text-pretty text-lg text-text-300">
+        Face recognition, real-time analytics, and seamless integrations. They say you
+        always build it better the second time around. Welcome to Attendify 2.0.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          routerLink="/login"
+          class="inline-flex items-center justify-center rounded-md bg-primary-action px-5 py-2.5 font-semibold text-white transition-colors hover:bg-primary-action-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-monochromatic-dark"
+        >
+          Get started
+        </a>
+        <a
+          routerLink="/about"
+          class="inline-flex items-center justify-center rounded-md border border-line-strong bg-white px-5 py-2.5 font-semibold text-primary-action transition-colors hover:border-monochromatic-dark hover:bg-monochromatic-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-monochromatic-dark"
+        >
+          See how it works
+        </a>
       </div>
-      <div class="bg-[#B9C9FE] h-32 w-full md:w-auto aspect-video rounded-xl flex flex-col items-center justify-center">
-        <p class="text-xl">10,500+</p>
-        <p class="text-xl">Attendance Logs</p>
-      </div>
-      <div class="bg-[#B9C9FE] h-32 w-full md:w-auto aspect-video rounded-xl flex flex-col items-center justify-center">
-        <p class="text-xl">2</p>
-        <p class="text-xl">Organizations Handled</p>
-      </div>
+    </div>
+
+    <div class="reveal reveal-delay">
+      <figure class="media-frame">
+        <img
+          ngSrc="/assets/example/face-recognition.png"
+          width="1846"
+          height="930"
+          priority
+          sizes="(max-width: 1024px) 92vw, 46vw"
+          alt="Attendify checking in an attendee by face recognition"
+        />
+      </figure>
     </div>
   </div>
 </section>
 
-<section class="main-container flex flex-col justify-center items-center gap-4">
-  <span class="mt-16 text-text-900 font-semibold bg-monochromatic-base border-monochromatic-dark border-2 px-4 py-0.5 rounded-full">
-    What's New in Version 2.0
-  </span>
-  <h1 class="text-lg">Powerful Features, Simplified</h1>
-  <h1 class="text-xl w-4/5 text-center">
-    We've rebuilt our platform from the ground up with cutting-edge technology to make attendance management effortless.
-  </h1>
+<!-- TRUST STRIP -->
+<section class="main-container -mt-2">
+  <div class="overflow-hidden rounded-2xl border border-line bg-white">
+    <div class="grid grid-cols-1 divide-y divide-line sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+      <div class="px-6 py-7 text-center">
+        <p class="text-3xl font-semibold tabular-nums text-text-900">2,400+</p>
+        <p class="mt-1 text-sm text-text-300">Unique attendees</p>
+      </div>
+      <div class="px-6 py-7 text-center">
+        <p class="text-3xl font-semibold tabular-nums text-text-900">16,500+</p>
+        <p class="mt-1 text-sm text-text-300">Attendance logs</p>
+      </div>
+      <div class="px-6 py-7 text-center">
+        <p class="text-3xl font-semibold tabular-nums text-text-900">2</p>
+        <p class="mt-1 text-sm text-text-300">Organizations handled</p>
+      </div>
+    </div>
 
-  <app-trustbox></app-trustbox>
+    <div
+      class="flex flex-col items-center justify-between gap-4 border-t border-line bg-surface-muted px-6 py-5 sm:flex-row"
+    >
+      <p class="text-sm text-text-300">
+        Trusted by
+        <a
+          href="https://www.facebook.com/lthmrectomanila"
+          target="_blank"
+          rel="noopener"
+          class="font-semibold text-primary-action hover:underline"
+          >Life Transform Harvest Ministry International</a
+        >
+        since 2024.
+      </p>
+      <app-trustbox class="w-full sm:w-auto sm:min-w-[240px]"></app-trustbox>
+    </div>
+  </div>
+</section>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mb-16">
+<!-- FEATURES -->
+<section class="main-container py-16 md:py-24">
+  <div class="mx-auto max-w-2xl text-center">
+    <span
+      class="inline-flex items-center rounded-full bg-surface-muted px-3 py-1 text-sm font-semibold text-text-300"
+    >
+      What's New in Version 2.0
+    </span>
+    <h2 class="section-title mt-4 text-balance font-bold text-text-900">
+      Powerful features, simplified
+    </h2>
+    <p class="mt-4 text-pretty text-lg text-text-300">
+      We've rebuilt our platform from the ground up with cutting-edge technology to make
+      attendance management effortless.
+    </p>
+  </div>
+
+  <!-- Showcase: real-time analytics -->
+  <div class="mt-14 grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+    <figure class="media-frame order-last lg:order-first">
+      <img
+        ngSrc="/assets/example/dashboard-screenshot.png"
+        width="1846"
+        height="930"
+        sizes="(max-width: 1024px) 92vw, 46vw"
+        alt="Attendify real-time analytics dashboard showing weekly attendance trends and demographic breakdowns"
+      />
+    </figure>
+
+    <div>
+      <span
+        class="inline-flex items-center rounded-full bg-surface-muted px-2.5 py-0.5 text-xs font-semibold text-text-300"
+      >
+        Enhanced
+      </span>
+      <h3 class="mt-3 text-2xl font-semibold text-text-900">Real-time analytics</h3>
+      <p class="mt-3 text-lg leading-relaxed text-text-300">
+        Live dashboards with attendance insights, trends, and detailed reports. Read the
+        week at a glance: who showed up, which cells grew, how every service compares.
+      </p>
+    </div>
+  </div>
+
+  <!-- Supporting features -->
+  <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
     <app-feature-card
       type="New"
       icon="flip"
       title="Face Recognition Check-in"
       description="Seamless, contactless attendance with facial recognition technology."
-    ></app-feature-card>
-
-    <app-feature-card
-      type="Enhanced"
-      icon="bar_chart_4_bars"
-      title="Real-Time Analytics"
-      description="Live dashboards with attendance insights, trends, and detailed reports."
     ></app-feature-card>
 
     <app-feature-card
@@ -71,8 +158,7 @@
       type="Enhanced"
       icon="brush"
       title="Slick New Look & Feel!"
-      description="Experience a fresh, modern design! We polished the entire app with a fresh, friendly design."
+      description="A fresh, friendly design. We polished the entire app from the ground up."
     ></app-feature-card>
   </div>
-
 </section>

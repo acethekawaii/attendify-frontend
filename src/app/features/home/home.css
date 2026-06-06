@@ -1,0 +1,75 @@
+:host {
+  display: block;
+}
+
+/* Soft daylight wash behind the hero; settles into the page background. */
+.hero-wash {
+  background: linear-gradient(180deg, #eaf4ff 0%, #f7fafd 62%);
+}
+
+.hero-title {
+  font-size: clamp(2.25rem, 4.6vw, 3.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.section-title {
+  font-size: clamp(1.875rem, 3.4vw, 2.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+
+/* Product screenshots framed as a clean, lifted surface. */
+.media-frame {
+  margin: 0;
+  padding: 8px;
+  border: 1px solid var(--color-line);
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 24px 60px -28px rgba(11, 74, 126, 0.4);
+  overflow: hidden;
+}
+
+.media-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Closing call-to-action band: a committed deep-blue field. */
+.cta-band {
+  border-radius: 20px;
+  padding: clamp(2.5rem, 6vw, 4.5rem) 1.5rem;
+  text-align: center;
+  background:
+    radial-gradient(120% 140% at 50% -10%, #1573b8 0%, transparent 55%),
+    var(--color-primary-action-deep);
+}
+
+/* Hero entrance: enhances an already-visible default; only above the fold. */
+.reveal {
+  animation: reveal-up 0.7s var(--ease-out-expo) both;
+}
+
+.reveal-delay {
+  animation-delay: 0.12s;
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-delay {
+    animation: none;
+  }
+}

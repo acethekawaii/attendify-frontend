@@ -1,7 +1,7 @@
 # Attendify 2.0 - Attendance Simplified
 Attendify is an all-in-one platform designed to help organizations manage attendees with analytics, all with modern UX, & face recognition.
 
-![Angular.js](https://img.shields.io/badge/angular.js-%23E23237.svg?style=for-the-badge&logo=angularjs&logoColor=white)
+![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![NestJS](https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white)
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
@@ -15,8 +15,8 @@ Attendify is an all-in-one platform designed to help organizations manage attend
 ## Repositories
 Linked services that work together to power Attendify.
 
-[![Readme Card](https://github-readme-stats-eight-theta.vercel.app/api/pin/?username=lugh-tuatha&repo=attendify-backend)](https://github.com/lugh-tuatha/attendify-backend)
-[![Readme Card](https://github-readme-stats-eight-theta.vercel.app/api/pin/?username=lugh-tuatha&repo=attendify-face-recognition)](https://github.com/lugh-tuatha/attendify-face-recognition)
+[![Readme Card](https://github-readme-stats-eight-theta.vercel.app/api/pin/?username=acethekawaii&repo=attendify-backend)](https://github.com/acethekawaii/attendify-backend)
+[![Readme Card](https://github-readme-stats-eight-theta.vercel.app/api/pin/?username=acethekawaii&repo=attendify-face-recognition)](https://github.com/acethekawaii/attendify-face-recognition)
 
 ## Attendify is currently used by
 [Life Transform Harvest Ministry International](https://www.facebook.com/lthmrectomanila) — since 2024 to Present

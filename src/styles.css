@@ -2,11 +2,22 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css'; 
 
 @theme {
+  /* Brand blue (identity / accent) */
   --color-monochromatic-base: #90d5ff;
   --color-monochromatic-dark: #40b7ff;
   --color-monochromatic-light: #e0f3ff;
+  /* Action blue (primary actions, links, selected state) */
+  --color-primary-action: #0E6FC2;
+  --color-primary-action-hover: #0B5CA3;
+  --color-primary-action-deep: #0B4A7E;
+  /* Ink / neutrals (cool, blue-true) */
   --color-text-900: #0B161E;
   --color-text-300: #365261;
+  --color-surface: #FFFFFF;
+  --color-surface-muted: #EEF4FA;
+  --color-line: #E2EAF1;
+  --color-line-strong: #CBD7E3;
+  /* Semantic */
   --color-success-900: rgba(61 190 129 / 100%);
   --color-success-300: rgba(61 190 129 / 25%);
   --color-success-100: rgb(209 237 224);
@@ -14,21 +25,23 @@
   --color-danger-300: rgba(255 75 75 / 25%);
   --color-danger-100: rgb(255 225 222);
   --color-bsod-success: #ce6300;
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 body, html {
-  font-family: "Hind", sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   color: #365261;
-  background-color: #F8FDF8;
+  background-color: #F7FAFD;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Poppins", sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   color: #0B161E;
 }
 
 * {
-  font-family: "Hind", sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
 }
 
 * {
@@ -59,8 +72,9 @@ h1, h2, h3, h4, h5, h6 {
   @apply px-4 mx-auto max-w-7xl w-full;
 }
 
+/* Legacy alias: the app uses .poppins for emphasis headings; now Inter. */
 .poppins {
-  font-family: "Poppins", sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
 }
 
 .icon-sm {
@@ -93,7 +107,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .mat-mdc-paginator-container {
-  background-color: #fbf8fd; 
+  background-color: #EEF4FA;
 }
 
 /* Material Paginator Mobile Responsiveness */
