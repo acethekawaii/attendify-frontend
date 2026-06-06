@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-06T00:00:00.000Z",
+  "title": "Design System: Attendify",
+  "extensions": {
+    "colorMeta": {
+      "primary-action": {
+        "role": "primary",
+        "displayName": "Action Blue",
+        "canonical": "oklch(55% 0.142 248)",
+        "tonalRamp": ["#06243C", "#08365A", "#0B4A7E", "#0E5FA3", "#0E6FC2", "#3A8BD4", "#86B6E6", "#CFE2F5"]
+      },
+      "brand-bright": {
+        "role": "secondary",
+        "displayName": "Brand Bright",
+        "canonical": "oklch(73% 0.137 240)",
+        "tonalRamp": ["#0A3B5C", "#0E5688", "#1473B5", "#2197E0", "#40B7FF", "#74CBFF", "#A6DEFF", "#E0F3FF"]
+      },
+      "brand-base": {
+        "role": "secondary",
+        "displayName": "Brand Base",
+        "canonical": "oklch(83% 0.097 235)",
+        "tonalRamp": ["#1F4E6E", "#2C6E97", "#3C8FC0", "#5DB1E4", "#90D5FF", "#B0E2FF", "#CFEEFF", "#E8F7FF"]
+      },
+      "ink-900": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "oklch(19% 0.018 240)",
+        "tonalRamp": ["#0B161E", "#16242E", "#243744", "#365261", "#5A7889", "#8AA3B2", "#BBCCD7", "#E2EAF1"]
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "Background",
+        "canonical": "oklch(98.4% 0.005 240)",
+        "tonalRamp": ["#0B161E", "#243744", "#5A7889", "#8AA3B2", "#CBD7E3", "#E2EAF1", "#EEF4FA", "#F7FAFD"]
+      },
+      "success": {
+        "role": "tertiary",
+        "displayName": "Success",
+        "canonical": "oklch(72% 0.13 158)",
+        "tonalRamp": ["#0F3D29", "#155737", "#1C7349", "#2A9763", "#3DBE81", "#74D2A4", "#A8E4C7", "#D1EDE0"]
+      },
+      "danger": {
+        "role": "tertiary",
+        "displayName": "Danger",
+        "canonical": "oklch(64% 0.21 25)",
+        "tonalRamp": ["#5C1212", "#841A1A", "#B32424", "#E03333", "#FF4B4B", "#FF7E7E", "#FFB0B0", "#FFE1DE"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Marketing hero on / and /about only; never inside the app." },
+      "headline": { "displayName": "Headline", "purpose": "Page titles and dashboard section heads." },
+      "title": { "displayName": "Title", "purpose": "Card titles, table group heads, nav links." },
+      "body": { "displayName": "Body", "purpose": "Default UI text and prose (cap prose at 65-75ch)." },
+      "label": { "displayName": "Label", "purpose": "Chips, table column headers, button text; short, never all-caps sentences." },
+      "metric": { "displayName": "Metric", "purpose": "Counts and figures; always tabular-nums." }
+    },
+    "shadows": [
+      { "name": "overlay", "value": "0 8px 30px rgba(11, 22, 30, 0.14)", "purpose": "Dialogs, popovers, mobile menu. Cool-ink based, not pure black." },
+      { "name": "hover-lift", "value": "0 4px 16px rgba(14, 111, 194, 0.12)", "purpose": "Interactive cards/tiles on hover only; faint blue ambient." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Ease-out-expo for state transitions and reveals." },
+      { "name": "duration-fast", "value": "150ms", "purpose": "Most product state changes (hover, focus, selection)." },
+      { "name": "duration-base", "value": "220ms", "purpose": "Overlays, menu open/close." }
+    ],
+    "breakpoints": [
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "max", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single primary action across the app. Action Blue, white text, AA-passing.",
+      "html": "<button class=\"ds-btn-primary\">Manage attendance</button>",
+      "css": ".ds-btn-primary { font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 0.875rem; color: #FFFFFF; background: #0E6FC2; border: none; border-radius: 6px; padding: 8px 16px; cursor: pointer; transition: background 150ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-primary:hover { background: #0B5CA3; } .ds-btn-primary:focus-visible { outline: 2px solid #40B7FF; outline-offset: 2px; } .ds-btn-primary:disabled { background: #CBD7E3; color: #365261; cursor: not-allowed; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary actions. Action Blue text on a hairline border.",
+      "html": "<button class=\"ds-btn-ghost\">Cancel</button>",
+      "css": ".ds-btn-ghost { font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 0.875rem; color: #0E6FC2; background: #FFFFFF; border: 1px solid #CBD7E3; border-radius: 6px; padding: 8px 16px; cursor: pointer; transition: background 150ms, border-color 150ms; } .ds-btn-ghost:hover { background: #E0F3FF; border-color: #40B7FF; } .ds-btn-ghost:focus-visible { outline: 2px solid #40B7FF; outline-offset: 2px; }"
+    },
+    {
+      "name": "Status Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Soft-fill badge for status (present/absent) or category. No heavy stroke.",
+      "html": "<span class=\"ds-chip ds-chip--success\">Checked in</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; font-family: Inter, system-ui, sans-serif; font-weight: 500; font-size: 0.75rem; border-radius: 9999px; padding: 2px 12px; background: #E0F3FF; color: #0B161E; } .ds-chip--success { background: #D1EDE0; color: #155737; } .ds-chip--danger { background: #FFE1DE; color: #841A1A; }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Flat white surface on the cool background, separated by a hairline border, not a shadow.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card__title\">Sunday Service</h3><p class=\"ds-card__meta\">1,847 checked in · +12.4%</p></div>",
+      "css": ".ds-card { background: #FFFFFF; border: 1px solid #E2EAF1; border-radius: 8px; padding: 16px; transition: box-shadow 150ms cubic-bezier(0.16,1,0.3,1); } .ds-card--interactive:hover { box-shadow: 0 4px 16px rgba(14,111,194,0.12); } .ds-card__title { font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 1.125rem; color: #0B161E; margin: 0 0 4px; } .ds-card__meta { font-family: Inter, system-ui, sans-serif; font-size: 0.875rem; color: #365261; margin: 0; font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Surface field with a cool stroke; focus shifts to Action Blue with a brand ring.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Search attendees\" />",
+      "css": ".ds-input { font-family: Inter, system-ui, sans-serif; font-size: 1rem; color: #0B161E; background: #FFFFFF; border: 1px solid #CBD7E3; border-radius: 6px; padding: 8px 12px; transition: border-color 150ms; } .ds-input::placeholder { color: #365261; } .ds-input:focus-visible { outline: none; border-color: #0E6FC2; box-shadow: 0 0 0 2px #40B7FF; }"
+    },
+    {
+      "name": "Metric",
+      "kind": "custom",
+      "refersTo": "metric",
+      "description": "A single key figure with label. Replaces the SaaS hero-metric template; used inline in context, not as a stat-card wall.",
+      "html": "<div class=\"ds-metric\"><span class=\"ds-metric__value\">1,847</span><span class=\"ds-metric__label\">Unique attendees</span></div>",
+      "css": ".ds-metric { display: flex; flex-direction: column; gap: 2px; } .ds-metric__value { font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 1.75rem; line-height: 1.1; color: #0B161E; font-variant-numeric: tabular-nums; } .ds-metric__label { font-family: Inter, system-ui, sans-serif; font-size: 0.75rem; font-weight: 500; color: #365261; }"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Header navigation link; active route is Action Blue with medium weight.",
+      "html": "<a class=\"ds-nav-link ds-nav-link--active\" href=\"#\">Dashboard</a>",
+      "css": ".ds-nav-link { font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 1.125rem; color: #0B161E; text-decoration: none; padding: 4px 2px; transition: color 150ms; } .ds-nav-link:hover { color: #0E6FC2; } .ds-nav-link--active { color: #0E6FC2; } .ds-nav-link:focus-visible { outline: 2px solid #40B7FF; outline-offset: 2px; border-radius: 4px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Clear Ledger",
+    "overview": "Attendify is a record you trust. A ministry leader opens it after service to read the week's attendance, the cells that grew, the VIPs who showed: the interface's only job is to make those numbers legible and honest at a glance. The Clear Ledger is calm, exact, and quiet. Data is the loudest thing on every screen; chrome recedes. This system is light, cool, and blue-true: surfaces are near-white tinted faintly toward the brand's own blue, one typeface (Inter) carries everything, and a single bright brand blue reads as accent while a deeper blue carries actions. It rejects the generic SaaS dashboard, clunky church admin software, sterile enterprise screens, and childish over-play.",
+    "keyCharacteristics": [
+      "Cool blue-tinted near-white surfaces; blue-true neutrals, never warm or green.",
+      "One family (Inter), hierarchy through weight + scale, tabular figures for all data.",
+      "Flat by default; hairline cool borders carry separation, not shadows.",
+      "One bright brand blue used sparingly as accent; a deeper blue carries actions.",
+      "Numbers first, chrome last, on every screen."
+    ],
+    "rules": [
+      { "name": "The One Voice Rule", "body": "Brand Bright (#40B7FF) is identity, not action. It appears on a small fraction of any screen (focus ring, one chart series, the wordmark). The moment it's carrying a button or a large fill, it's wrong; use Action Blue.", "section": "colors" },
+      { "name": "The Cool Neutral Rule", "body": "Every neutral tints toward the brand's blue hue or stays at chroma 0. Warm or green near-whites are forbidden; the green-mint body background is retired.", "section": "colors" },
+      { "name": "The One Family Rule", "body": "Inter only across the UI. Poppins, Hind, and the Material Roboto default are retired. A second family is permitted nowhere in the app.", "section": "typography" },
+      { "name": "The Tabular Figures Rule", "body": "Every number a leader compares uses font-variant-numeric: tabular-nums so digits align and don't jitter between renders.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Surfaces rest flat with a hairline border. If you reach for a shadow on a resting element, use a border or the Surface Muted step instead. The retired blue-glow shadow-default is decorative; do not reintroduce it as a resting state.", "section": "elevation" },
+      { "name": "The One Button Vocabulary Rule", "body": "The app mixes a custom app-button with Material mat-flat-button color=primary; that is two primary buttons, one is wrong. Standardize on a single Action Blue button everywhere.", "section": "components" }
+    ],
+    "dos": [
+      "Do keep numbers first and chrome last: data is the loudest element on every screen.",
+      "Do use Action Blue (#0E6FC2) for actions and Brand Bright (#40B7FF) for identity/accent only.",
+      "Do tint every neutral toward blue or keep it chroma-0; surfaces are #F7FAFD / #FFFFFF.",
+      "Do set Inter everywhere and tabular-nums on all compared figures.",
+      "Do rest surfaces flat with hairline #E2EAF1 borders; reserve shadow for overlays and hover.",
+      "Do give every interactive component default, hover, focus-visible, active, disabled, and (where relevant) loading and error states.",
+      "Do use skeletons for loading content, and empty states that teach the screen."
+    ],
+    "donts": [
+      "Don't ship the generic SaaS dashboard: no hero-metric template, no identical icon-heading-text card grids, no gradient text.",
+      "Don't look like clunky church admin software: no dated, beige, logbook-dense layouts.",
+      "Don't look sterile enterprise/government: no cold all-gray, joyless, over-formal screens.",
+      "Don't go childish/over-playful: no emoji soup or toy-like controls.",
+      "Don't put white text on Brand Bright (#40B7FF); it fails AA (~1.9:1). Use Action Blue.",
+      "Don't use a warm or green near-white; the green-mint #F8FDF8 background is retired.",
+      "Don't use border-left/border-right >1px colored stripes on cards, alerts, or list items.",
+      "Don't use gradient text or decorative glassmorphism.",
+      "Don't add tiny uppercase tracked eyebrows above every section, or 01/02/03 numbered section markers.",
+      "Don't mix two primary-button styles; one button vocabulary, Action Blue.",
+      "Don't reintroduce the blue-glow shadow-default as a resting-state decoration."
+    ]
+  }
+}
