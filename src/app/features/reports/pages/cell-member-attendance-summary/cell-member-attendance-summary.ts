@@ -19,6 +19,9 @@ import { DiscipleModel, SummaryModel } from '@/app/features/reports/models/atten
 import { ErrorCard } from "@/app/shared/components/error-card/error-card";
 import { LucideAngularModule, Users } from 'lucide-angular';
 import { Event, EVENTS } from '@/app/core/constants/events';
+import { ReportExportControls } from '@/app/features/reports/components/report-export-controls/report-export-controls';
+import { buildCellMemberSheets } from '@/app/features/reports/utils/report-export-tables';
+import { ReportExportSheet } from '@/app/features/reports/utils/report-export';
 
 @Component({
   selector: 'app-cell-member-attendance-summary',
@@ -33,7 +36,8 @@ import { Event, EVENTS } from '@/app/core/constants/events';
     MatFormFieldModule,
     ReportSkeleton,
     LucideAngularModule,
-    ErrorCard
+    ErrorCard,
+    ReportExportControls
 ],
   providers: [provideMomentDateAdapter(DEFAULT_DATE_FORMAT)],
   templateUrl: './cell-member-attendance-summary.html',
@@ -105,5 +109,35 @@ export class CellMemberAttendanceSummary {
 
   onSelectionChange(event: any) {
     this.loadAttendanceByPrimaryLeader();
+  }
+
+  get selectedEventName(): string {
+    return this.events.find((event) => event.id === this.selectedEvent)?.name ?? 'Unknown event';
+  }
+
+  get exportFilename(): string {
+    const leaderSlug = this.primaryLeaderFullName
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '');
+    const suffix = leaderSlug ? `_${leaderSlug}` : '';
+    return `cell-member-attendance-summary${suffix}_${this.date.value.format('YYYY-MM-DD')}`;
+  }
+
+  get exportSheets(): ReportExportSheet[] {
+    return buildCellMemberSheets(
+      {
+        title: 'LTHMI Recto Manila - Cell Member Attendance Summary',
+        dateLabel: this.date.value.format('MMMM D, YYYY'),
+        eventName: this.selectedEventName,
+      },
+      this.primaryLeaderFullName,
+      this.summary,
+      this.disciples,
+    );
+  }
+
+  get isExportDisabled(): boolean {
+    return this.isDisciplesDataLoading || this.isDisciplesDataEmpty;
   }
 }
