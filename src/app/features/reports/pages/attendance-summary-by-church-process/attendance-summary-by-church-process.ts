@@ -18,6 +18,9 @@ import { ReportsService } from '@/app/features/reports/services/reports';
 import { DEFAULT_DATE_FORMAT } from '@/app/shared/utils/date-format';
 import { ErrorCard } from "@/app/shared/components/error-card/error-card";
 import { Event, EVENTS } from '@/app/core/constants/events';
+import { ReportExportControls } from '@/app/features/reports/components/report-export-controls/report-export-controls';
+import { buildChurchProcessSheets } from '@/app/features/reports/utils/report-export-tables';
+import { ReportExportSheet } from '@/app/features/reports/utils/report-export';
 
 @Component({
   selector: 'app-attendance-summary-by-church-process',
@@ -32,6 +35,7 @@ import { Event, EVENTS } from '@/app/core/constants/events';
     DatePipe,
     ErrorCard,
     ReportSkeleton,
+    ReportExportControls,
   ],
   providers: [provideMomentDateAdapter(DEFAULT_DATE_FORMAT)],
   templateUrl: './attendance-summary-by-church-process.html',
@@ -99,5 +103,29 @@ export class AttendanceSummaryByChurchProcess {
 
   onSelectionChange(event: any) {
     this.loadAttendanceSummary();
+  }
+
+  get selectedEventName(): string {
+    return this.events.find((event) => event.id === this.selectedEvent)?.name ?? 'Unknown event';
+  }
+
+  get exportFilename(): string {
+    return `attendance-summary-pepsol-students_${this.date.value.format('YYYY-MM-DD')}`;
+  }
+
+  get exportSheets(): ReportExportSheet[] {
+    return buildChurchProcessSheets(
+      {
+        title: 'LTHMI Recto Manila - Attendance Summary of Pepsol Students',
+        dateLabel: this.date.value.format('MMMM D, YYYY'),
+        eventName: this.selectedEventName,
+      },
+      this.regularAttendees,
+      this.grandTotal,
+    );
+  }
+
+  get isExportDisabled(): boolean {
+    return this.isAttendanceSummaryLoading || this.isAttendanceSummaryEmpty;
   }
 }

@@ -18,6 +18,9 @@ import { ReportsService } from '@/app/features/reports/services/reports';
 import { DEFAULT_DATE_FORMAT } from '@/app/shared/utils/date-format';
 import { ErrorCard } from "@/app/shared/components/error-card/error-card";
 import { Event, EVENTS } from '@/app/core/constants/events';
+import { ReportExportControls } from '@/app/features/reports/components/report-export-controls/report-export-controls';
+import { buildMemberStatusSheets } from '@/app/features/reports/utils/report-export-tables';
+import { ReportExportSheet } from '@/app/features/reports/utils/report-export';
 
 @Component({
   selector: 'app-attendance-summary',
@@ -31,7 +34,8 @@ import { Event, EVENTS } from '@/app/core/constants/events';
     ReactiveFormsModule,
     MatSelectModule,
     DatePipe,
-    ErrorCard
+    ErrorCard,
+    ReportExportControls
 ],
   providers: [provideMomentDateAdapter(DEFAULT_DATE_FORMAT)],
   templateUrl: './attendance-summary-by-member-status.html',
@@ -102,5 +106,32 @@ export class AttendanceSummaryByMemberStatus {
 
   onSelectionChange(event: any) {
     this.loadAttendanceSummary();
+  }
+
+  get selectedEventName(): string {
+    return this.events.find((event) => event.id === this.selectedEvent)?.name ?? 'Unknown event';
+  }
+
+  get exportFilename(): string {
+    return `attendance-summary-by-member-status_${this.date.value.format('YYYY-MM-DD')}`;
+  }
+
+  get exportSheets(): ReportExportSheet[] {
+    return buildMemberStatusSheets(
+      {
+        title: 'LTHMI Recto Manila - Attendance Summary by Member Status',
+        dateLabel: this.date.value.format('MMMM D, YYYY'),
+        eventName: this.selectedEventName,
+      },
+      this.regularAttendees,
+      this.totalRegulars,
+      this.vipAttendees,
+      this.totalVips,
+      this.grandTotal,
+    );
+  }
+
+  get isExportDisabled(): boolean {
+    return this.isAttendanceSummaryLoading || this.isAttendanceSummaryEmpty;
   }
 }

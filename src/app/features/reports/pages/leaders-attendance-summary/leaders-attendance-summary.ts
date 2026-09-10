@@ -18,6 +18,9 @@ import { ReportSkeleton } from "@/app/shared/components/report-skeleton/report-s
 import { AttendanceByHierarchyModel } from '@/app/features/reports/models/attendance-by-hierarchy.model';
 import { ErrorCard } from "@/app/shared/components/error-card/error-card";
 import { Event, EVENTS } from '@/app/core/constants/events';
+import { ReportExportControls } from '@/app/features/reports/components/report-export-controls/report-export-controls';
+import { buildLeadersSheets } from '@/app/features/reports/utils/report-export-tables';
+import { ReportExportSheet } from '@/app/features/reports/utils/report-export';
 
 @Component({
   selector: 'app-leaders-attendance-summary',
@@ -32,7 +35,8 @@ import { Event, EVENTS } from '@/app/core/constants/events';
     RouterLink,
     MatSelectModule,
     ReportSkeleton,
-    ErrorCard
+    ErrorCard,
+    ReportExportControls
 ],
   templateUrl: './leaders-attendance-summary.html',
   providers: [provideMomentDateAdapter(DEFAULT_DATE_FORMAT)],
@@ -91,5 +95,28 @@ export class LeadersAttendanceSummary {
 
   onSelectionChange(event: any) {
     this.loadAttendanceByHierarchy();
+  }
+
+  get selectedEventName(): string {
+    return this.events.find((event) => event.id === this.selectedEvent)?.name ?? 'Unknown event';
+  }
+
+  get exportFilename(): string {
+    return `primary-leader-attendance-summary_${this.date.value.format('YYYY-MM-DD')}`;
+  }
+
+  get exportSheets(): ReportExportSheet[] {
+    return buildLeadersSheets(
+      {
+        title: 'LTHMI Recto Manila - Primary Leaders Attendance Summary',
+        dateLabel: this.date.value.format('MMMM D, YYYY'),
+        eventName: this.selectedEventName,
+      },
+      this.leaderAttendanceListData,
+    );
+  }
+
+  get isExportDisabled(): boolean {
+    return this.leaderAttendanceList.isLoading || this.leaderAttendanceList.isEmpty;
   }
 }

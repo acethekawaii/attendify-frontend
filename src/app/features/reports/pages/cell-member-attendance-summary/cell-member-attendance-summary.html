@@ -4,22 +4,31 @@
     <span class="text-monochromatic-dark">Cell Member Attendance Summary</span>
   </h1>
 
-  <div class="print:hidden mt-2 space-x-4">
-    <mat-form-field appearance="outline" class="w-full md:w-72">
-      <mat-label>MMMM DD, YYYY</mat-label>
-      <input matInput [matDatepicker]="dp" [formControl]="date">
-      <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
-      <mat-datepicker #dp></mat-datepicker>
-    </mat-form-field>
+  <div class="print:hidden mt-2 flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+    <div class="flex flex-col gap-4 md:flex-row">
+      <mat-form-field appearance="outline" class="w-full md:w-72">
+        <mat-label>MMMM DD, YYYY</mat-label>
+        <input matInput [matDatepicker]="dp" [formControl]="date">
+        <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
+        <mat-datepicker #dp></mat-datepicker>
+      </mat-form-field>
 
-    <mat-form-field appearance="outline" class="w-full md:w-88">
-      <mat-label>Select Event</mat-label>
-      <mat-select [(ngModel)]="selectedEvent" (selectionChange)="onSelectionChange($event)">
-        @for (event of events; track $index) {
-          <mat-option value="{{event.id}}">{{event.name}}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
+      <mat-form-field appearance="outline" class="w-full md:w-88">
+        <mat-label>Select Event</mat-label>
+        <mat-select [(ngModel)]="selectedEvent" (selectionChange)="onSelectionChange($event)">
+          @for (event of events; track $index) {
+            <mat-option value="{{event.id}}">{{event.name}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <app-report-export-controls
+      class="shrink-0 lg:mt-1"
+      [disabled]="isExportDisabled"
+      [filename]="exportFilename"
+      [sheets]="exportSheets"
+    ></app-report-export-controls>
   </div>
 
   <table class="w-full md:w-3/5 print:w-full print:-mx-4 border-2 border-monochromatic-base shadow-default border-collapse">
