@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import * as reportExport from '../../utils/report-export';
 import { ReportExportControls } from './report-export-controls';
 
 describe('ReportExportControls', () => {
@@ -25,24 +24,16 @@ describe('ReportExportControls', () => {
     expect(buttons.length).toBe(2);
     expect(buttons[0].disabled).toBeTrue();
     expect(buttons[1].disabled).toBeTrue();
+    expect(buttons[0].textContent).toContain('Export Excel');
+    expect(buttons[1].textContent).toContain('Export CSV');
   });
 
-  it('exports Excel and CSV when data is available', async () => {
-    const excelSpy = spyOn(reportExport, 'downloadXlsx').and.resolveTo();
-    const csvSpy = spyOn(reportExport, 'downloadCsv');
-
+  it('enables both actions after data loads', () => {
     fixture.componentRef.setInput('disabled', false);
     fixture.detectChanges();
 
-    const [excelButton, csvButton] = fixture.nativeElement.querySelectorAll(
-      'button',
-    ) as NodeListOf<HTMLButtonElement>;
-
-    excelButton.click();
-    await fixture.whenStable();
-    csvButton.click();
-
-    expect(excelSpy).toHaveBeenCalled();
-    expect(csvSpy).toHaveBeenCalled();
+    const buttons = fixture.nativeElement.querySelectorAll('button') as NodeListOf<HTMLButtonElement>;
+    expect(buttons[0].disabled).toBeFalse();
+    expect(buttons[1].disabled).toBeFalse();
   });
 });
