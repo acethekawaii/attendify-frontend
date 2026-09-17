@@ -25,12 +25,6 @@ const LINE = '#E2EAF1';
 const INK = '#0B161E';
 const INK_MUTED = '#365261';
 
-export function prefersReducedMotion(): boolean {
-  return typeof window !== 'undefined'
-    && typeof window.matchMedia === 'function'
-    && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-}
-
 function baseChart(type: ApexChart['type'], height: number): ApexChart {
   return {
     type,
@@ -40,8 +34,10 @@ function baseChart(type: ApexChart['type'], height: number): ApexChart {
     toolbar: { show: false },
     zoom: { enabled: false },
     selection: { enabled: false },
-    animations: { enabled: !prefersReducedMotion() },
+    animations: { enabled: false },
     parentHeightOffset: 0,
+    redrawOnParentResize: true,
+    redrawOnWindowResize: true,
   };
 }
 

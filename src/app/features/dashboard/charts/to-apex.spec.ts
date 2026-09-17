@@ -1,5 +1,10 @@
 import { ServiceComparison } from '@/app/core/mocks/service-comparison';
-import { wrapCategoryLabel, xAxisDensity, toGroupedBarView, toAreaChartView } from './to-apex';
+import {
+  wrapCategoryLabel,
+  xAxisDensity,
+  toGroupedBarView,
+  toAreaChartView,
+} from './to-apex';
 
 describe('dashboard chart mapping', () => {
   describe('xAxisDensity', () => {
@@ -23,7 +28,7 @@ describe('dashboard chart mapping', () => {
   });
 
   describe('toAreaChartView', () => {
-    it('maps ngx-charts series onto datetime points', () => {
+    it('maps ngx-charts series onto aligned category values', () => {
       const view = toAreaChartView(
         [
           {
@@ -34,16 +39,38 @@ describe('dashboard chart mapping', () => {
             ],
           },
         ],
-        { start: new Date('2025-01-01'), end: new Date('2025-12-31') },
+        { start: new Date('2025-01-01'), end: new Date('2025-01-20') },
       );
 
       expect(view.chart.type).toBe('area');
-      expect(view.xaxis.type).toBe('datetime');
+      expect(view.xaxis.type).toBe('category');
+      expect(view.xaxis.categories).toEqual(['Jan 5', 'Jan 12']);
       expect(view.series[0].name).toBe('Sunday Service');
+      expect(view.series[0].data).toEqual([120, 140]);
       expect(view.legend.show).toBeFalse();
-      const first = view.series[0].data[0] as { x: number; y: number };
-      expect(first.y).toBe(120);
-      expect(new Date(first.x).getFullYear()).toBe(2025);
+    });
+
+    it('buckets a year of Sundays into one point per month', () => {
+      const series: { name: string; value: number }[] = [];
+      const day = new Date(2025, 0, 5);
+      while (day.getFullYear() === 2025) {
+        series.push({
+          name: day.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+          value: 100,
+        });
+        day.setDate(day.getDate() + 7);
+      }
+
+      const view = toAreaChartView(
+        [{ name: 'Sunday Service', series }],
+        { start: new Date('2025-01-01'), end: new Date('2025-12-31') },
+      );
+
+      expect(view.series[0].data).toEqual([100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]);
+      expect(view.xaxis.categories).toEqual([
+        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+      ]);
     });
   });
 

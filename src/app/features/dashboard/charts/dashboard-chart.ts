@@ -7,6 +7,20 @@ import { ApexChartView } from './to-apex';
   selector: 'app-dashboard-chart',
   imports: [ChartComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'block w-full min-w-0',
+  },
+  styles: `
+    :host {
+      display: block;
+      width: 100%;
+      min-width: 0;
+    }
+    apx-chart {
+      display: block;
+      width: 100%;
+    }
+  `,
   template: `
     <apx-chart
       [series]="view().series"

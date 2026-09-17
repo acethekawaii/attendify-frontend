@@ -56,7 +56,7 @@ export interface ApexChartView {
 }
 
 export function parsePointName(name: string): number | null {
-  const timestamp = Date.parse(name);
+  const timestamp = Date.parse(name.replace(/[\u202f\u00a0]/g, ' '));
   return Number.isNaN(timestamp) ? null : timestamp;
 }
 
@@ -157,25 +157,18 @@ function toTimeSeriesView(
   range: DateRange | undefined,
   options: { chart: ApexChart; fill: ApexFill; legend: ApexLegend; emptyText: string },
 ): ApexChartView {
-  const categories = collectCategories(groups);
-  const parsed = categories.map(parsePointName);
-  const useDatetime = categories.length > 0 && parsed.every((value) => value !== null);
-  const density = resolveDensity(parsed, range);
-
-  const series: ApexAxisChartSeries = useDatetime
-    ? groups.map((group) => ({
-        name: group.name,
-        data: group.series.map((point) => ({
-          x: parsePointName(point.name) ?? point.name,
-          y: point.value,
-        })),
-      }))
-    : groups.map((group) => ({
-        name: group.name,
-        data: categories.map(
-          (category) => group.series.find((point) => point.name === category)?.value ?? null,
-        ),
-      }));
+  const density = resolveDensity(
+    collectCategories(groups).map(parsePointName),
+    range,
+  );
+  const bucketed = density === 'month' ? bucketByMonth(groups) : groups;
+  const categories = collectCategories(bucketed);
+  const series: ApexAxisChartSeries = bucketed.map((group) => ({
+    name: group.name,
+    data: categories.map(
+      (category) => group.series.find((point) => point.name === category)?.value ?? null,
+    ),
+  }));
 
   return {
     series,
@@ -185,21 +178,36 @@ function toTimeSeriesView(
     fill: options.fill,
     legend: options.legend,
     grid: chartGrid,
-    tooltip: {
-      ...chartTooltip,
-      x: useDatetime
-        ? { format: density === 'month' ? 'MMM yyyy' : 'MMM d, yyyy' }
-        : undefined,
-    },
+    tooltip: chartTooltip,
     dataLabels: chartDataLabels,
     markers: chartMarkers,
     plotOptions: {},
     noData: noChartData(options.emptyText),
     yaxis: attendeesAxis,
-    xaxis: useDatetime
-      ? datetimeAxis(density, parsed as number[])
-      : categoryAxis(categories, density),
+    xaxis: categoryAxis(categories, density),
   };
+}
+
+function bucketByMonth(groups: NamedSeries[]): NamedSeries[] {
+  return groups.map((group) => {
+    const buckets = new Map<string, number[]>();
+    for (const point of group.series) {
+      const time = parsePointName(point.name);
+      const key = time == null
+        ? point.name
+        : new Date(time).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+      const values = buckets.get(key) ?? [];
+      values.push(point.value);
+      buckets.set(key, values);
+    }
+    return {
+      name: group.name,
+      series: [...buckets.entries()].map(([name, values]) => ({
+        name,
+        value: Math.round(values.reduce((sum, value) => sum + value, 0) / values.length),
+      })),
+    };
+  });
 }
 
 function collectCategories(groups: NamedSeries[]): string[] {
@@ -235,46 +243,19 @@ function resolveDensity(parsed: Array<number | null>, range?: DateRange): XAxisD
   return xAxisDensity(start, end);
 }
 
-function datetimeAxis(density: XAxisDensity, timestamps: number[]): ApexXAxis {
-  const min = timestamps.length ? Math.min(...timestamps) : undefined;
-  const max = timestamps.length ? Math.max(...timestamps) : undefined;
-  const tickAmount =
-    density === 'month' ? Math.min(12, Math.max(4, monthSpan(min, max))) : density === 'week' ? 8 : undefined;
-
-  return {
-    type: 'datetime',
-    min,
-    max,
-    tickAmount,
-    labels: {
-      datetimeUTC: false,
-      hideOverlappingLabels: true,
-      rotate: 0,
-      trim: false,
-      style: { colors: chartInk.muted, fontSize: '12px', fontFamily: 'Inter, system-ui, sans-serif' },
-      formatter: (_value, timestamp) => formatTick(timestamp ?? Number(_value), density),
-    },
-    axisBorder: { color: chartInk.line },
-    axisTicks: { color: chartInk.line },
-    tooltip: { enabled: false },
-  };
-}
-
 function categoryAxis(categories: string[], density: XAxisDensity): ApexXAxis {
-  const tickAmount =
-    density === 'month'
-      ? Math.min(12, categories.length)
-      : density === 'week'
-        ? Math.min(8, categories.length)
-        : undefined;
+  const labels = density === 'month'
+    ? uniqueMonthLabels(categories)
+    : categories.map((name) => formatTimeAxisLabel(name, density));
 
   return {
     type: 'category',
-    categories,
-    tickAmount,
+    categories: labels,
+    tickPlacement: 'on',
     labels: {
       rotate: 0,
       hideOverlappingLabels: true,
+      showDuplicates: false,
       trim: false,
       style: { colors: chartInk.muted, fontSize: '12px', fontFamily: 'Inter, system-ui, sans-serif' },
     },
@@ -283,22 +264,27 @@ function categoryAxis(categories: string[], density: XAxisDensity): ApexXAxis {
   };
 }
 
-function formatTick(timestamp: number, density: XAxisDensity): string {
-  const date = new Date(timestamp);
-  if (Number.isNaN(date.getTime())) {
-    return '';
+function uniqueMonthLabels(categories: string[]): string[] {
+  let previous = '';
+  return categories.map((name) => {
+    const label = formatTimeAxisLabel(name, 'month');
+    if (label === previous) {
+      return '';
+    }
+    previous = label;
+    return label;
+  });
+}
+
+export function formatTimeAxisLabel(name: string, density: XAxisDensity): string {
+  const time = parsePointName(name);
+  if (time == null) {
+    return name;
   }
+  const date = new Date(time);
   if (density === 'month') {
-    return date.toLocaleDateString('en-US', { month: 'short', year: '2-digit' });
+    return date.toLocaleDateString('en-US', { month: 'short' });
   }
   return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 }
 
-function monthSpan(min?: number, max?: number): number {
-  if (min == null || max == null) {
-    return 12;
-  }
-  const start = new Date(min);
-  const end = new Date(max);
-  return Math.max(1, (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth()) + 1);
-}
