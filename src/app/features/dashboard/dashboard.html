@@ -28,7 +28,7 @@
         <lucide-angular routerLink="/attendance" [img]="Users" class="text-blue-800"></lucide-angular>
       </div>
       <p class="text-lg">Total Attendees</p>
-      <h3 class="text-xl">1700</h3>
+      <h3 class="text-xl tabular-nums">1700</h3>
       <p class="font-thin">Overall Attendees</p>
     </div>
 
@@ -36,75 +36,48 @@
       <div class="bg-green-200 p-4 inline-block rounded-lg">
         <lucide-angular routerLink="/attendance" [img]="TrendingUp" class="text-green-800"></lucide-angular>
       </div>
-      <p class="text-lg">Average Attendancce</p>
-      <h3 class="text-xl">180</h3>
+      <p class="text-lg">Average Attendance</p>
+      <h3 class="text-xl tabular-nums">180</h3>
       <p class="font-thin">Weekly Average</p>
     </div>
   </section>
 
   <section class="mt-8">
-    <p class="text-xl font-bold text-text-300 -mb-2">Attendees Overview</p>
-    <div class="-ml-2 grid">
-      <ngx-charts-number-card
-        [scheme]="'aqua'"
-        [results]="single"
-        [cardColor]="'#3A445D'"
-        [view]="view"
-      ></ngx-charts-number-card>
+    <h2 class="text-xl font-bold text-text-900">Attendees Overview</h2>
+    <div class="mt-3 grid grid-cols-2 gap-4 md:grid-cols-4">
+      @for (item of overview; track item.name) {
+        <div class="rounded-lg border border-line bg-white p-6 hover:shadow-md transition-shadow">
+          <p class="text-sm text-text-300">{{ item.name }}</p>
+          <p class="mt-1 text-2xl font-semibold text-text-900 tabular-nums">{{ item.value }}</p>
+        </div>
+      }
     </div>
   </section>
 
-  <p class="text-xl font-bold text-text-300">Attendance Trends - Sunday Service</p>
-  <ngx-charts-line-chart
-    [view]="[1220, 400]"
-    [scheme]="'picnic'"
-    [results]="attendanceTrends"
-    [xAxis]="true"
-    [yAxis]="true"
-    [gradient]="false"
-    [legend]="false"
-    [showXAxisLabel]="true"
-    [showYAxisLabel]="true"
-    [xAxisLabel]="'Date'"
-    [yAxisLabel]="'Attendees'"
-  >
-  </ngx-charts-line-chart>
+  <section class="mt-8">
+    <h2 class="text-xl font-bold text-text-900">Attendance Trends - Sunday Service</h2>
+    <div class="dashboard-chart-card mt-3 rounded-lg border border-line bg-white p-4 hover:shadow-md transition-shadow md:p-6">
+      <app-dashboard-chart [view]="attendanceTrendView" />
+    </div>
+  </section>
 
-  <p class="text-xl font-bold text-text-300">Service Comparison</p>
-  <div class="border-2 border-monochromatic-dark rounded-md p-4 bg-monochromatic-light">
-    This feature requires 2 - 3 years of data to be displayed.
-  </div>
-  <ngx-charts-bar-vertical-2d
-    [view]="[1220, 400]"
-    [scheme]="'horizon'"
-    [results]="serviceComparison"
-    [xAxis]="true"
-    [yAxis]="true"
-    [legend]="true"
-    [showXAxisLabel]="true"
-    [showYAxisLabel]="true"
-    [xAxisLabel]="'Date'"
-    [yAxisLabel]="'Attendees'"
-    [legendTitle]="'Church'"
-  >
-  </ngx-charts-bar-vertical-2d>
+  <section class="mt-8">
+    <h2 class="text-xl font-bold text-text-900">Service Comparison</h2>
+    <div class="mt-3 rounded-md border border-line bg-surface-muted p-4 text-text-300">
+      This feature requires 2 - 3 years of data to be displayed.
+    </div>
+    <div class="dashboard-chart-card mt-3 rounded-lg border border-line bg-white p-4 hover:shadow-md transition-shadow md:p-6">
+      <app-dashboard-chart [view]="serviceComparisonView" />
+    </div>
+  </section>
 
-  <p class="text-xl font-bold text-text-300">Primary Leaders Attendees Trends</p>
-  <div class="border-2 border-monochromatic-dark rounded-md p-4 bg-monochromatic-light">
-    This feature is currently under development.
-  </div>
-  <ngx-charts-line-chart
-    [view]="[1220, 400]"
-    [scheme]="'cool'"
-    [results]="leadersAttendeesTrends"
-    [xAxis]="true"
-    [yAxis]="true"
-    [gradient]="false"
-    [legend]="true"
-    [showXAxisLabel]="true"
-    [showYAxisLabel]="true"
-    [xAxisLabel]="'Date'"
-    [yAxisLabel]="'Attendees'"
-  >
-  </ngx-charts-line-chart>
+  <section class="mt-8 mb-10">
+    <h2 class="text-xl font-bold text-text-900">Primary Leaders Attendees Trends</h2>
+    <div class="mt-3 rounded-md border border-line bg-surface-muted p-4 text-text-300">
+      This feature is currently under development.
+    </div>
+    <div class="dashboard-chart-card mt-3 rounded-lg border border-line bg-white p-4 hover:shadow-md transition-shadow md:p-6">
+      <app-dashboard-chart [view]="leadersTrendView" />
+    </div>
+  </section>
 </main>
