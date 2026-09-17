@@ -4,9 +4,11 @@
 
 .dashboard-chart-card {
   min-height: 360px;
+  width: 100%;
 }
 
-.dashboard-chart-card apx-chart {
+.dashboard-chart-card app-dashboard-chart {
   display: block;
   width: 100%;
+  min-width: 0;
 }
