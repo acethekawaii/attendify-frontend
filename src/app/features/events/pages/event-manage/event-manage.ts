@@ -12,8 +12,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 
 import { LucideAngularModule, CornerDownLeft, SearchCheck } from 'lucide-angular';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
-
 import { EventModel } from '@/app/features/events/models/event.model';
 import { AttendanceModel } from '@/app/features/attendance/models/attendance.model';
 import { EventRegistrationModel } from '@/app/features/events/models/event-registration.model';
@@ -39,7 +37,6 @@ import { ErrorCard } from "@/app/shared/components/error-card/error-card";
     BsodLoading,
     NgClass,
     ErrorCard,
-    NgxChartsModule
 ],
   templateUrl: './event-manage.html',
   styleUrl: './event-manage.css'
@@ -216,8 +213,8 @@ export class EventManage {
     });
   }
 
-  onCardClick(event: any) {
-    if (event.name === 'Total VIP') {
+  onCardClick(item: { name: string; value: number }) {
+    if (item.name === 'Total VIP') {
       this.router.navigate([`/events/${this.event?.slug}/vip`]);
     }
   }

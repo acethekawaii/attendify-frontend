@@ -19,7 +19,6 @@ import { AttendanceService } from '@/app/features/attendance/services/attendance
 import { DEFAULT_DATE_FORMAT } from '@/app/shared/utils/date-format';
 import { ErrorCard } from '@/app/shared/components/error-card/error-card';
 import { environment } from '@/environments/environment';
-import { NgxChartsModule } from "@swimlane/ngx-charts";
 import { EventsService } from '@/app/features/events/services/events';
 import { EventModel } from '@/app/features/events/models/event.model';
 
@@ -38,7 +37,6 @@ import { EventModel } from '@/app/features/events/models/event.model';
     MatPaginator,
     NgClass,
     ErrorCard,
-    NgxChartsModule
   ],
   providers: [provideMomentDateAdapter(DEFAULT_DATE_FORMAT)],
   templateUrl: './attendance-detail.html',
@@ -167,10 +165,10 @@ export class AttendanceDetail {
       })
     }
 
-  onCardClick(event: any) {
+  onCardClick(item: { name: string; value: number }) {
     const formattedDate = this.date.value.format('YYYY-MM-DD');
 
-    if (event.name === 'Total VIP') {
+    if (item.name === 'Total VIP') {
       this.router.navigate([`/attendance/${this.slug}/vip/${formattedDate}`]);
     }
   }
