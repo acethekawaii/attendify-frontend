@@ -2,7 +2,6 @@
   display: block;
 }
 
-/* Soft daylight wash behind the hero; settles into the page background. */
 .hero-wash {
   background: linear-gradient(180deg, #eaf4ff 0%, #f7fafd 62%);
 }
@@ -17,7 +16,6 @@
   color: var(--color-text-300);
 }
 
-/* Product screenshots framed as a clean, lifted surface. */
 .media-frame {
   margin: 0;
   padding: 8px;
@@ -35,7 +33,6 @@
   border-radius: 8px;
 }
 
-/* Hero entrance: enhances an already-visible default; only above the fold. */
 .reveal {
   animation: reveal-up 0.7s var(--ease-out-expo) both;
 }
