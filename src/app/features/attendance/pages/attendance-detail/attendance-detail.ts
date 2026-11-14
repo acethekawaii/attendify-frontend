@@ -1,5 +1,5 @@
 import { Component, inject, ViewChild } from '@angular/core';
-import { DatePipe, NgClass } from '@angular/common';
+import { DatePipe, DOCUMENT, NgClass } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import { CdkTableModule } from '@angular/cdk/table';
@@ -54,12 +54,16 @@ export class AttendanceDetail {
   readonly organizationId = environment.organizationId;
   readonly date = new FormControl(moment(), { nonNullable: true });
 
+  private readonly document = inject(DOCUMENT);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private attendanceService = inject(AttendanceService);
   private eventsService = inject(EventsService);
 
-  slug = this.route.snapshot.paramMap.get('slug');
+  readonly slug = this.route.snapshot.paramMap.get('slug');
+  readonly checkInUrl = this.slug
+    ? `${this.document.location.origin}/attendance/${this.slug}/check-in`
+    : this.document.location.origin;
 
   displayedColumns: string[] = ['fullName', 'primaryLeader', 'churchProcess', 'memberStatus', 'arival'];
   attendanceDataSource = new MatTableDataSource<any>([]);
