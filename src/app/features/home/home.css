@@ -13,10 +13,8 @@
   letter-spacing: -0.02em;
 }
 
-.section-title {
-  font-size: clamp(1.875rem, 3.4vw, 2.5rem);
-  line-height: 1.1;
-  letter-spacing: -0.015em;
+.section-pill {
+  color: var(--color-text-300);
 }
 
 /* Product screenshots framed as a clean, lifted surface. */
@@ -35,16 +33,6 @@
   width: 100%;
   height: auto;
   border-radius: 8px;
-}
-
-/* Closing call-to-action band: a committed deep-blue field. */
-.cta-band {
-  border-radius: 20px;
-  padding: clamp(2.5rem, 6vw, 4.5rem) 1.5rem;
-  text-align: center;
-  background:
-    radial-gradient(120% 140% at 50% -10%, #1573b8 0%, transparent 55%),
-    var(--color-primary-action-deep);
 }
 
 /* Hero entrance: enhances an already-visible default; only above the fold. */
