@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="620" viewBox="0 0 1100 620" role="img" aria-labelledby="title desc">
+  <title id="title">Attendance Trends - Sunday Service</title>
+  <desc id="desc">Attendees and VIP attendees for Sunday Service from September 20 to November 8, 2026.</desc>
+  <rect width="1100" height="620" rx="16" fill="#ffffff"/>
+  <text x="28" y="42" fill="#0B161E" font-size="20" font-weight="700" font-family="Inter, system-ui, sans-serif">Attendance Trends - Sunday Service</text>
+  <circle cx="32" cy="72" r="5" fill="#40B7FF"/>
+  <text x="44" y="77" fill="#365261" font-size="13" font-family="Inter, system-ui, sans-serif">Attendees</text>
+  <circle cx="140" cy="72" r="5" fill="#0E6FC2"/>
+  <text x="152" y="77" fill="#365261" font-size="13" font-family="Inter, system-ui, sans-serif">VIP Attendees</text>
+  <text transform="translate(22 320) rotate(-90)" fill="#365261" font-size="13" font-family="Inter, system-ui, sans-serif">Attendees</text>
+  <line x1="78" y1="500.0" x2="1040" y2="500.0" stroke="#E2EAF1" stroke-width="1"/><text x="66" y="504.0" text-anchor="end" fill="#365261" font-size="13" font-family="Inter, system-ui, sans-serif">0</text><line x1="78" y1="372.7" x2="1040" y2="372.7" stroke="#E2EAF1" stroke-width="1"/><text x="66" y="376.7" text-anchor="end" fill="#365261" font-size="13" font-family="Inter, system-ui, sans-serif">100</text><line x1="78" y1="245.3" x2="1040" y2="245.3" stroke="#E2EAF1" stroke-width="1"/><text x="66" y="249.3" text-anchor="end" fill="#365261" font-size="13" font-family="Inter, system-ui, sans-serif">200</text><line x1="78" y1="118.0" x2="1040" y2="118.0" stroke="#E2EAF1" stroke-width="1"/><text x="66" y="122.0" text-anchor="end" fill="#365261" font-size="13" font-family="Inter, system-ui, sans-serif">300</text>
+  <defs>
+    <linearGradient id="gAtt" x1="0" y1="118" x2="0" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#40B7FF" stop-opacity="0.42"/>
+      <stop offset="100%" stop-color="#40B7FF" stop-opacity="0.04"/>
+    </linearGradient>
+    <linearGradient id="gVip" x1="0" y1="118" x2="0" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0E6FC2" stop-opacity="0.42"/>
+      <stop offset="100%" stop-color="#0E6FC2" stop-opacity="0.04"/>
+    </linearGradient>
+  </defs>
+  <path d="M 78.00 269.53 C 100.90 247.46 169.62 157.05 215.43 137.10 C 261.24 117.15 307.05 144.74 352.86 149.83 C 398.67 154.93 444.48 161.08 490.29 167.66 C 536.10 174.24 581.90 187.40 627.71 189.31 C 673.52 191.22 719.33 169.57 765.14 179.12 C 810.95 188.67 856.76 241.09 902.57 246.61 C 948.38 252.12 1017.10 217.96 1040.00 212.23 L 1040.00 500.00 L 78.00 500.00 Z" fill="url(#gAtt)"/>
+  <path d="M 78.00 466.89 C 100.90 456.71 169.62 416.38 215.43 405.77 C 261.24 395.16 307.05 403.44 352.86 403.23 C 398.67 403.01 444.48 402.59 490.29 404.50 C 536.10 406.41 581.90 410.65 627.71 414.69 C 673.52 418.72 719.33 423.39 765.14 428.69 C 810.95 434.00 856.76 447.79 902.57 446.52 C 948.38 445.25 1017.10 425.30 1040.00 421.05 L 1040.00 500.00 L 78.00 500.00 Z" fill="url(#gVip)"/>
+  <path d="M 78.00 269.53 C 100.90 247.46 169.62 157.05 215.43 137.10 C 261.24 117.15 307.05 144.74 352.86 149.83 C 398.67 154.93 444.48 161.08 490.29 167.66 C 536.10 174.24 581.90 187.40 627.71 189.31 C 673.52 191.22 719.33 169.57 765.14 179.12 C 810.95 188.67 856.76 241.09 902.57 246.61 C 948.38 252.12 1017.10 217.96 1040.00 212.23" fill="none" stroke="#40B7FF" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M 78.00 466.89 C 100.90 456.71 169.62 416.38 215.43 405.77 C 261.24 395.16 307.05 403.44 352.86 403.23 C 398.67 403.01 444.48 402.59 490.29 404.50 C 536.10 406.41 581.90 410.65 627.71 414.69 C 673.52 418.72 719.33 423.39 765.14 428.69 C 810.95 434.00 856.76 447.79 902.57 446.52 C 948.38 445.25 1017.10 425.30 1040.00 421.05" fill="none" stroke="#0E6FC2" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="78.0" y="528" text-anchor="middle" fill="#365261" font-size="13" font-family="Inter, system-ui, sans-serif">Sep 20</text><text x="215.4" y="528" text-anchor="middle" fill="#365261" font-size="13" font-family="Inter, system-ui, sans-serif">Sep 27</text><text x="352.9" y="528" text-anchor="middle" fill="#365261" font-size="13" font-family="Inter, system-ui, sans-serif">Oct 4</text><text x="490.3" y="528" text-anchor="middle" fill="#365261" font-size="13" font-family="Inter, system-ui, sans-serif">Oct 11</text><text x="627.7" y="528" text-anchor="middle" fill="#365261" font-size="13" font-family="Inter, system-ui, sans-serif">Oct 18</text><text x="765.1" y="528" text-anchor="middle" fill="#365261" font-size="13" font-family="Inter, system-ui, sans-serif">Oct 25</text><text x="902.6" y="528" text-anchor="middle" fill="#365261" font-size="13" font-family="Inter, system-ui, sans-serif">Nov 1</text><text x="1040.0" y="528" text-anchor="middle" fill="#365261" font-size="13" font-family="Inter, system-ui, sans-serif">Nov 8</text>
+</svg>
